@@ -13,6 +13,7 @@ setup(
         "pyautogui",
         "pillow",
         "qrcode",
+        "volume-control"
     ],
     entry_points={
         'console_scripts': ['media_control=media_control.__init__:main']
