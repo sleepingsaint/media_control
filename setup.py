@@ -10,10 +10,9 @@ setup(
     install_requires=[
         "Flask",
         "flask-socketio",
-        "keyboard",
+        "pyautogui",
         "pillow",
         "qrcode",
-        "mouse"
     ],
     entry_points={
         'console_scripts': ['media_control=media_control.__init__:main']

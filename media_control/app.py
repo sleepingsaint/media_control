@@ -1,8 +1,7 @@
 import io
-import mouse
 import qrcode
-import keyboard
 import pyvolume
+import pyautogui
 
 import socket
 from flask import Flask, render_template
@@ -39,16 +38,16 @@ class Routes:
         return render_template("index.html")
 
     def play(self, data=None):
-        keyboard.press_and_release("space")
+        pyautogui.press("space")
 
     def click(self, data=None):
-        mouse.click("left")
+        pyautogui.click()
 
     def move(self, data):
         sensitivity = float(data.get("sensitivity", 1))
         dx = float(data.get("dx")) * sensitivity
         dy = float(data.get("dy")) * sensitivity
-        mouse.move(dx, dy, False, 0.001)
+        pyautogui.moveRel(dx, dy, 0.001)
 
     def volume(self, data):
         level = float(data.get("level"))
@@ -57,11 +56,11 @@ class Routes:
     def keypress(self, data):
         if data is not None and "key" in data:
             if data["key"] == "Enter":
-                keyboard.press("enter")
+                pyautogui.press("enter")
             elif data["key"] == "Backspace":
-                keyboard.press("backspace")
+                pyautogui.press("backspace")
             else:
-                keyboard.write(data["key"])
+                pyautogui.write(data["key"])
 
 
 class MediaControl(Routes, Utils):
@@ -87,3 +86,7 @@ class MediaControl(Routes, Utils):
         self.generateQRCode(http_url)
 
         self.socketio.run(self.app, host=ipAddr, port=port)
+
+if __name__ == "__main__":
+    app = MediaControl()
+    app.run()
