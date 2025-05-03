@@ -1,4 +1,7 @@
 from setuptools import setup
+from pathlib import Path
+this_directory = Path(__file__).parent
+long_description = (this_directory / "README.md").read_text()
 
 setup(
     name="media_control",
@@ -16,6 +19,8 @@ setup(
         "volume-control"
     ],
     entry_points={
-        'console_scripts': ['media_control=media_control.__init__:main']
+        'console_scripts': ['media-control=media_control.__init__:main']
     }, 
+    long_description=long_description,
+    long_description_content_type="text/markdown"
 )

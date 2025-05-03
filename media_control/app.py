@@ -20,8 +20,8 @@ class Utils:
         raise IOError('no free ports')
 
     def getIPAddress(self):
-        hostname = socket.gethostname()
-        IPAddr = socket.gethostbyname(hostname)
+        hostname = socket.getfqdn()
+        IPAddr = socket.gethostbyname_ex(hostname)[2][1]
         return IPAddr
 
     def generateQRCode(self, data):
@@ -85,7 +85,7 @@ class MediaControl(Routes, Utils):
         http_url = f"http://{ipAddr}:{port}"
         self.generateQRCode(http_url)
 
-        self.socketio.run(self.app, host=ipAddr, port=port)
+        self.socketio.run(self.app, host=ipAddr, port=port, debug=False)
 
 if __name__ == "__main__":
     app = MediaControl()
