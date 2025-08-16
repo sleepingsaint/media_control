@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "media_control"
+version = "0.0.3"
+authors = [{name = "sleepingsaint"}]
+description = "Application to access media controls on your device"
+readme = {file = "README.md", content-type = "text/markdown"}
+
+[project.urls]
+Repository = "https://github.com/sleepingsaint/media_control"
+
+[project.scripts]
+media-control = "media_control.app:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+
+[tool.setuptools.dynamic]
+dependencies = { file = ["requirements.txt"] }

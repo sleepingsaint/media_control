@@ -1,2 +1,0 @@
-recursive-include media_control/templates *
-recursive-include media_control/static *
