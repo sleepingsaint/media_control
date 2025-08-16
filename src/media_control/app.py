@@ -99,6 +99,9 @@ class MediaControl(Routes, Utils):
         self.socketio.run(self.app, host=ipAddr, port=port, debug=False)
 
 def main():
+    # This is to disable PyAutoGUI fail-safe trigger from mouse moving to a corner of the screen
+    pyautogui.FAILSAFE = False
+
     app = MediaControl()
     app.run()
 

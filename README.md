@@ -41,6 +41,7 @@ media-control
 - [x] Display values for mouse acceleration, volume
 - [x] Add Support for keyboard typing - display all the characters being typed including backspace and enter (like key stroke listeners) - https://www.toptal.com/developers/keycode
 - [x] Create a python package using poetry and publish it to pypi - Completed using pyproject.toml
-- [ ] Fix the cursor getting stuck at corners
+- [x] Fix the cursor getting stuck at corners
+- [ ] Validate it on linux and mac
 - [ ] Add Support for mouse scroll wheel - build a 3d mouse wheel scroll
 - [ ] Polish the ui to make the UX more easy
