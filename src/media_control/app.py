@@ -2,6 +2,7 @@ import io
 import qrcode
 import pyvolume
 import pyautogui
+import platform
 
 import socket
 from flask import Flask, render_template
@@ -22,6 +23,16 @@ class Utils:
     def getIPAddress(self):
         hostname = socket.gethostname()
         IPAddr = socket.gethostbyname(hostname)
+
+        if platform.system() == "Darwin":  # macOS
+            # macos returns 127.0.0.1 address instead of 192.x.x.x 
+            # this is a workaround to get the 192.x.x.x style address
+            # TODO: This workaround expects access to network, so need to compute IPAddr without network
+            s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+            s.connect(("8.8.8.8", 80))  # Google DNS
+            IPAddr = s.getsockname()[0]
+            s.close()
+
         return IPAddr
 
     def generateQRCode(self, data):
